@@ -3,7 +3,7 @@ package org.launchcode.blogz.controllers;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.launchcode.blogz.models.User;
+import org.launchcode.blogz.models.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,11 +24,11 @@ public class AuthenticationController extends AbstractController {
 		String newPassword = request.getParameter("password");
 		String newVerifyPassword = request.getParameter("verify");
 
-		if (!User.isValidUsername(newUsername)){
+		if (!Student.isValidUsername(newUsername)){
 			String username_error = "Bad name";
 			model.addAttribute("username_error", username_error);
 		}
-		if (!User.isValidPassword(newPassword)){
+		if (!Student.isValidPassword(newPassword)){
 			String password_error = "Bad password";
 			model.addAttribute("password_error", password_error);
 		}
@@ -36,12 +36,12 @@ public class AuthenticationController extends AbstractController {
 			String verify_error = "Your passwords do not match";
 			model.addAttribute("verify_error", verify_error);
 		}
-		if ((User.isValidUsername(newUsername)) && (User.isValidPassword(newPassword))){
+		if ((Student.isValidUsername(newUsername)) && (Student.isValidPassword(newPassword))){
 			if (newVerifyPassword.equals(newPassword)){
-				User newUser = new User(newUsername, newPassword);
-				userDao.save(newUser);
+				Student newStudent = new Student(newUsername, newPassword);
+				studentDao.save(newStudent);
 				HttpSession thisSession = request.getSession();
-				setUserInSession(thisSession, newUser);
+				setStudentInSession(thisSession, newStudent);
 
 				return "redirect:blog/newpost";
 			}
@@ -69,7 +69,7 @@ public class AuthenticationController extends AbstractController {
 
 		// TODO - implement login
 		// get parameters from request		
-		// get user by their username User.username
+		// get user by their username Student.username
 
 		//check password is correct, if not correct password redirect to the form and give an error message
 
@@ -77,21 +77,21 @@ public class AuthenticationController extends AbstractController {
 
 		String newUsername = request.getParameter("username");
 		String newPassword = request.getParameter("password");
-		User user = userDao.findByUsername(newUsername);
+		Student student = studentDao.findByUsername(newUsername);
 		// no user exists error
-		if (user == null){
+		if (student == null){
 			String error = "Your user name does not exist";
 			model.addAttribute("error", error);
 			return "login";
 		}
-		if (!user.isMatchingPassword(newPassword)){
+		if (!student.isMatchingPassword(newPassword)){
 			String error = "Try again";
 			model.addAttribute("error", error);
 			return "login";
 
 		}
 		HttpSession thisSession = request.getSession();
-		setUserInSession(thisSession, user);
+		setStudentInSession(thisSession, student);
 		return "redirect:blog/newpost";
 	}
 

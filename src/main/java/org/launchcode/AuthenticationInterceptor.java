@@ -8,32 +8,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.launchcode.blogz.controllers.AbstractController;
-import org.launchcode.blogz.models.User;
-import org.launchcode.blogz.models.dao.UserDao;
+import org.launchcode.blogz.models.Student;
+import org.launchcode.blogz.models.dao.StudentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
-    UserDao userDao;
+    StudentDao studentDao;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
 
-        List<String> authPages = Arrays.asList("/blog/newpost");
+        List<String> authPages = Arrays.asList("/student/newinfo");
 
         // Require sign-in for auth pages
         if ( authPages.contains(request.getRequestURI()) ) {
 
         	boolean isLoggedIn = false;
-        	User user;
-            Integer userId = (Integer) request.getSession().getAttribute(AbstractController.userSessionKey);
+        	Student student;
+            Integer studentId = (Integer) request.getSession().getAttribute(AbstractController.studentSessionKey);
 
-            if (userId != null) {
-            	user = userDao.findByUid(userId);
+            if (studentId != null) {
+            	student = studentDao.findByUid(studentId);
             	
-            	if (user != null) {
+            	if (student != null) {
             		isLoggedIn = true;
             	}
             }

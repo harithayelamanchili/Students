@@ -2,29 +2,29 @@ package org.launchcode.blogz.controllers;
 
 import javax.servlet.http.HttpSession;
 
-import org.launchcode.blogz.models.User;
-import org.launchcode.blogz.models.dao.PostDao;
-import org.launchcode.blogz.models.dao.UserDao;
+import org.launchcode.blogz.models.Student;
+import org.launchcode.blogz.models.dao.InfoDao;
+import org.launchcode.blogz.models.dao.StudentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractController {
 
 	@Autowired
-    protected UserDao userDao;
+    protected StudentDao studentDao;
 	
 	@Autowired
-	protected PostDao postDao;
+	protected InfoDao infoDao;
 
-    public static final String userSessionKey = "user_id";
+    public static final String studentSessionKey = "student_id";
 
-    protected User getUserFromSession(HttpSession session) {
+    protected Student getStudentFromSession(HttpSession session) {
     	
-        Integer userId = (Integer) session.getAttribute(userSessionKey);
-        return userId == null ? null : userDao.findByUid(userId);
+        Integer studentId = (Integer) session.getAttribute(studentSessionKey);
+        return studentId == null ? null : studentDao.findByUid(studentId);
     }
     
-    protected void setUserInSession(HttpSession session, User user) {
-    	session.setAttribute(userSessionKey, user.getUid());
+    protected void setStudentInSession(HttpSession session, Student student) {
+    	session.setAttribute(studentSessionKey, student.getUid());
     }
 	
 }
