@@ -43,7 +43,7 @@ public class AuthenticationController extends AbstractController {
 				HttpSession thisSession = request.getSession();
 				setStudentInSession(thisSession, newStudent);
 
-				return "redirect:blog/newpost";
+				return "redirect:details/newpost";
 			}
 			return "signup";
 
@@ -92,7 +92,7 @@ public class AuthenticationController extends AbstractController {
 		}
 		HttpSession thisSession = request.getSession();
 		setStudentInSession(thisSession, student);
-		return "redirect:blog/newpost";
+		return "redirect:details/newpost";
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

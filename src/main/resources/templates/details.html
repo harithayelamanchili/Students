@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="template :: dochead">
+</head>
+<body>
+
+<div th:replace="template :: navigation"></div>
+
+<h1>Student Details!</h1>
+
+<div th:each="info : ${infos}">
+
+	<h2><a th:href="'/details/' + ${info.author.username} + '/' + ${info.uid}" th:text="${info.title}"></a></h2>
+	<p th:text="${info.body}"></p>
+	<p class="info-author">written by <a th:href="'/details/' + ${info.author.username}" th:text="${info.author.username}"></a></p>
+
+</div>
+
+</body>
+</html>

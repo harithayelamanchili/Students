@@ -6,15 +6,10 @@
 
 	<div th:replace="template :: navigation"></div>
 
-	<!-- TODO - display a single blog post -->
-<h1>blog posts!</h1>
-
-
-
-	<h2><a th:href="'/blog/' + ${post.author.username} + '/' + ${post.uid}" th:text="${post.title}"></a></h2>
-	<p th:text="${post.body}"></p>
-	<p class="post-author">written by <a th:href="'/blog/' + ${post.author.username}" th:text="${post.author.username}"></a> on <span th:text="${#dates.format(post.created, 'yyyy-MM-dd')}"></span></p>
-
-
+	<!-- TODO - display a single student info -->
+<h1>Information!</h1>
+	<h2><a th:href="'/details/' + ${info.author.username} + '/' + ${info.uid}" th:text="${info.title}"></a></h2>
+	<p th:text="${info.body}"></p>
+	<p class="info-author">written by <a th:href="'/details/' + ${info.author.username}" th:text="${info.author.username}"></a> on <span th:text="${#dates.format(post.created, 'yyyy-MM-dd')}"></span></p>
 </body>
 </html>

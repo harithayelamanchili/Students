@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class InfoController extends AbstractController {
 
-	@RequestMapping(value = "/blog/newpost", method = RequestMethod.GET)
+	@RequestMapping(value = "/details/newpost", method = RequestMethod.GET)
 	public String newInfoForm() {
 		return "newinfo";
 	}
 
-	@RequestMapping(value = "/blog/newpost", method = RequestMethod.POST)
+	@RequestMapping(value = "/details/newpost", method = RequestMethod.POST)
 	public String newinfo(HttpServletRequest request, Model model) {
 
 		// TODO - implement newPost
@@ -61,7 +61,7 @@ public class InfoController extends AbstractController {
 
 	// handle requests like /blog/chris/5
 
-	@RequestMapping(value = "/blog/{username}/{uid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/details/{username}/{uid}", method = RequestMethod.GET)
 	public String singlePost(@PathVariable String username, @PathVariable int uid, Model model) {
 
 		// TODO - implement singlePost
@@ -75,7 +75,7 @@ public class InfoController extends AbstractController {
 		return "info";
 	}
 
-	@RequestMapping(value = "/blog/{username}", method = RequestMethod.GET)
+	@RequestMapping(value = "/details/{username}", method = RequestMethod.GET)
 	public String studentInfos(@PathVariable String username, Model model) {
 
 		// TODO - implement userPosts
@@ -87,7 +87,7 @@ public class InfoController extends AbstractController {
 		// pass the posts into the template
 		model.addAttribute("infos", studentInfos);
 
-		return "blog";
+		return "details";
 	}
 
 }

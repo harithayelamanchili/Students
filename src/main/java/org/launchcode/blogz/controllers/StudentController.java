@@ -21,14 +21,14 @@ public class StudentController extends AbstractController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/blog")
+	@RequestMapping(value = "/details")
 	public String infoIndex(Model model) {
 		
 		// TODO - fetch posts and pass to template
 		List<Info> allInfos = infoDao.findAll();
 		model.addAttribute("infos", allInfos);
 		
-		return "blog";
+		return "details";
 	}
 	
 }
