@@ -55,18 +55,15 @@ public class InfoController extends AbstractController {
 			return singlePost(username, uid, model);
 			
 
-
-		//return "redirect:index"; // TODO - this redirect should go to the new post's page  		
+ 		
 	}
 
-	// handle requests like /blog/chris/5
+	
 
 	@RequestMapping(value = "/details/{username}/{uid}", method = RequestMethod.GET)
 	public String singlePost(@PathVariable String username, @PathVariable int uid, Model model) {
 
-		// TODO - implement singlePost
-
-		//get given post
+		
 		Info newInfo = infoDao.findByUid(uid);
 
 		// pass post into the template
