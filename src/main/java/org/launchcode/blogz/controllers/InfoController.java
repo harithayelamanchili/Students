@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class InfoController extends AbstractController {
 
-	@RequestMapping(value = "/details/newpost", method = RequestMethod.GET)
+	@RequestMapping(value = "/details/newinfo", method = RequestMethod.GET)
 	public String newInfoForm() {
 		return "newinfo";
 	}
 
-	@RequestMapping(value = "/details/newpost", method = RequestMethod.POST)
+	@RequestMapping(value = "/details/newinfo", method = RequestMethod.POST)
 	public String newinfo(HttpServletRequest request, Model model) {
 
 		// TODO - implement newPost
@@ -37,14 +37,14 @@ public class InfoController extends AbstractController {
 		if (newTitle.equals("") || newTitle.equals(null)){
 			String error = "Bad title";
 			model.addAttribute("error", error);
-			return "newpost";
+			return "newinfo";
 		}
 
 		
 		if (newBody.equals("") || newBody.equals(null)){
 			String error = "You need a body";
 			model.addAttribute("error", error);
-			return "newpost";
+			return "newinfo";
 		}
 		
 			Info newInfo = new Info(newTitle, newBody, author);
